@@ -21,25 +21,12 @@
       <input id="m" autocomplete="off" /><button>Send</button>
     </form>
 
+    <div id="app"></div>
 <!--     need instead to get to the relative path in node_modules. for some reason
     i can't figure out how to cd into that file, so hard-coded the .js file in the client directory for now -->
     <script src="socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
-      var socket = io();
-      $('form').submit(function(){
-        socket.emit('chat message', $('#m').val());
-        $('#m').val('');
-        return false;
-      });
-      socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
-      });
-      socket.on('disconnect', function(){
-        console.log('a user has left.... aw man');
-        $('#messages').append($('<li>').text('a user has left the room'));
-      });
-    </script>
+    <script src="bundle.js"></script>
 
   </body>
 </html>

@@ -21,6 +21,9 @@ io.on('connection', function(socket){
   });
 });
 
+// app.get('*', (req, res) => {
+//   res.sendFile(__dirname + '../client/dist/index.html')
+// })
 
 //set and run the port and server
 app.set('port',process.env.PORT || 3000);
