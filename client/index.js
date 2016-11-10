@@ -48,10 +48,3 @@ appRender()
 store.subscribe(appRender)
 
 
-  // <Provider store={store}>
-  //   <Router history={browserHistory}>
-  //     <Route path='/' component={PrimaryChatroom} >
-  //      <Route path='/logout' component={Logout} />
-  //     </Route>
-  //   </Router>
-  // </Provider>

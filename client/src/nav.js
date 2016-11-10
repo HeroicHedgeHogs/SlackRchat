@@ -1,54 +1,36 @@
 import React from 'react'
-import Login from './login'
-import Logout from './logout'
-import Profile from './profile'
+import Logout from "./logout.js"
 import { loginUser } from '../actions/loginActions'
 import { logoutUser } from '../actions/logoutActions'
+import {Router, Route, Link, browserHistory, IndexRoute} from 'react-router'
 
 export default class Nav extends React.Component {
+
   render() {
-    const { dispatch, isAuthenticated, errorMessage } = this.props
-  
     return (
-      <div>
-      <nav className='nav'>
-        <div className='container-nav'>
-          <h1>Slacker<h1>
-        <div>
-        <a className='btn btn-primary' href='#' onClick={this.open}>
-          Profile
-        </a>
-        <a className='btn btn-primary' href='/SignIn'> 
-          SignIn
-        </a>
-        <a className='btn btn-primary' href='/LogOut'>
-          LogOut
-        </a>    
-        </div>
-          <ul className='header'>
-            <li>Slacker</li>
-            <li><Link to='Profile' className='btn btn-primary' href='#' onClick={this.open}>Profile</Link></li>
-            <li><Link to='SignIn'className='btn btn-primary'> SignIn</Link></li>
-            <li><Link to='LogOut' className='btn btn-primary'>LogOut'</Link></li>
-          </ul>  
-         </div> 
-         <div className='nav-form'>
-            {!isAuthenticated && 
-            <Login 
-            errorMessage={errorMessage}
-            onLoginClick={creds => dispatch(loginUser(creds))}
-            />}
-          {isAuthenticated &&
-            <Logout onLogoutClick={() => dispatch(logoutUser())} />}
-        </div>
-      </nav>
+      <div className="nav">
+        <h1>Slacker</h1>
+        <a className="btn btn-primary" href="#" onClick={this.open}>Profile</a>
+        <a className="btn btn-primary" href="/SignIn"> SignIn </a>
+        <a className="btn btn-primary" href="/LogOut">LogOut</a>
       </div>
-    )
+    );
   }
 }
+  
+    // <Route path='LogOut' component={Logout} />
+  
 
-Nav.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
-  isAuthenticated: React.PropTypes.bool.isRequired,
-  errorMessage: React.PropTypes.string
-}
+
+// var Modal = React.createClass({
+//   render() {
+//     return (
+//       <div> 
+//     <button type="button">
+//       <span class="hide">Close</span>
+//     </button>
+//   </div>;
+//   }
+// });
+
+

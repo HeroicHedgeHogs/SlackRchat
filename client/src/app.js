@@ -5,7 +5,7 @@ import MessageList from './ChatBody.js';
 import Message from './Message.js';
 import ChatReducer from '../reducers/ChatReducer.js';
 import { addMessage } from '../actions/ChatActions';
-
+import Nav from './nav.js';
 
 
 class PrimaryChatroom extends React.Component {
@@ -51,6 +51,7 @@ class PrimaryChatroom extends React.Component {
       <div>
         <ChatForm socket={this.socket} />
         <MessageList />
+        <Nav />
         <Message />
       </div>
     )
@@ -63,7 +64,7 @@ PrimaryChatroom.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  return { state: state }
+  return { state: state.ChatReducer }
 };
 
 export default connect(mapStateToProps)(PrimaryChatroom);
