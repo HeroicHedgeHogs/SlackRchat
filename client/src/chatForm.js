@@ -3,19 +3,24 @@ import React, { PropTypes } from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Picker } from 'emoji-mart';
-import { FormGroup, Button } from 'react-bootstrap';
+import { FormGroup, Button, Popover, OverlayTrigger } from 'react-bootstrap';
 
-let stuff = '';
+// const popoverClickRootClose = (
 
+// )
 //= ( { socket, currentRoom, currentUser } ) => 
 class ChatForm extends React.Component {
   constructor(props){
     super(props);
     this.input;
     this.state = {
-      stuff: ""
+      show: false
     }
   }
+
+  // const popoverClickRootClose = ()  => {
+
+  // }
 
   render(){
     return (
@@ -100,19 +105,21 @@ class ChatForm extends React.Component {
         > 
           <FormGroup bsSize="large">
             <input ref={node => { this.input = node; }} />
+            <OverlayTrigger trigger={'click'} rootClose placement="top" overlay={
+              <Popover id="popover-trigger-click-root-close">
+                <Picker
+                  emojiSize={20}
+                  perLine={7}
+                  skin={1}
+                  set='apple'
+                  onClick={emoji => this.input.value += emoji.colons}
+                />
+              </Popover>
+              }>
+              <Button>Emojis</Button>
+            </OverlayTrigger>
             <Button type="submit">Send</Button>
           </FormGroup>
-
-          
-            { this.stuff &&
-              <Picker
-                emojiSize={20}
-                perLine={9}
-                skin={1}
-                set='apple'
-                onClick={emoji => this.input.value += emoji.colons}
-              />
-            }
         </form>
       </div>
     );
