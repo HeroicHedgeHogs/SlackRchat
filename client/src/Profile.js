@@ -112,46 +112,44 @@ class Profile extends React.Component {
         </Modal.Header>
         <Modal.Body id='modal_content'>
         <div>
-          <div>
-            <h2>Edit Profile</h2>
-          </div>   
-          <div> 
-            <h3>Profile Picture</h3>
-            <input type="file" ref='pic' accept="image/*" data-action="profilepicture" />
-            <img src={this.state.picture}></img>
+          <div className='profilePicture'> 
+            <img className='pictureImg' src={this.state.picture}></img>
+            <input className='pictureInput'type="file" ref='pic' accept="image/*" data-action="profilepicture" />
           </div>
-          <div>
-            <label>First Name</label>
+          <div className='restProfile'>
+          <div className='names'>
+            <label className='label'>First Name</label>
               <input type='text' value={this.state.first} onChange={this.handleFirst} />
-            <label>Last Name</label>
+            <label className='label'>Last Name</label>
               <input type='text' value={this.state.last} onChange={this.handleLast} />  
           </div>
           <div>
-            <label>Phone</label>
+            <label className='label'>Phone</label>
               <input type='text' value={this.state.phone} onChange={this.handlePhone} />
           </div>
           <div>
             <h4>Social Media</h4>
             <div>
-            <label>github</label>
+            <label className='label'>Github</label>
               <input type='text' value={this.state.github} onChange={this.handleGithub} />
-            <label>facebook</label>
+            <label className='label'>Facebook</label>
               <input type='text' value={this.state.facebook} onChange={this.handleFacebook} />
             </div>
             <div>  
-            <label>twitter</label>
+            <label className='label'>Twitter</label>
               <input type='text' value={this.state.twitter} onChange={this.handleTwitter} />  
-            <label>linkedin</label>
+            <label className='label'>Linkedin</label>
               <input type='text' value={this.state.linkedin} onChange={this.handleLinkedin}/> 
             </div>  
           </div>  
-          <div>
-            <div className='aboutMeContainer'>
+          <div className='aboutMeContainer'>
+            <div>
             <label>About Me</label>
             </div>
             <div>
-              <input className='aboutMe' type='text' value={this.state.about} onChange={this.handleAbout} />
+              <input className='aboutMeInput' type='text' value={this.state.about} onChange={this.handleAbout} />
             </div>
+           </div> 
           </div>
         </div>  
         </Modal.Body>

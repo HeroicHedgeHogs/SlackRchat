@@ -77,10 +77,7 @@ class SignUp extends React.Component {
     const { dataStore, errorMessage } = this.props
     return (
       <div>
-        <div>
-          <video id='background-video' autoPlay loop>
-          <source src='/styles/The-Crosswalk.mp4' type='video/mp4' />
-          </video>
+        <div className='background'>
         </div>
         <div className='signUpPage'>
           <h1 className='stayConnected'>Stay Connected</h1>

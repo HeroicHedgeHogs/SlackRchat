@@ -13,6 +13,7 @@ export function clickedUserProfile(user) {
     email: user.email,
     first: user.first,
     last: user.last,
+    phone: user.phone,
     about: user.about,
     github: user.github,
     facebook: user.facebook,
