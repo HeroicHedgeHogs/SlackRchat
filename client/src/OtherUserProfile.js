@@ -10,33 +10,19 @@ import { dispatch, connect } from 'react-redux';
 import axios from 'axios'
 import {open2, close2} from '../actions/ClickedUserProfileActions';
 
-
-// const OtherUserProfile =({clickedUser})
-
 class OtherUserProfile extends React.Component {
+
   constructor(props) {
-// const OtherUserProfile =({clickedUser}) => {
-    super(props)
-    // this.state = {
-    //   // first: this.prop
-    // }
-    // let getID = clickedUser.id
-    // console.log(clickedUser, 'this is the clicedd')
-  
-  // console.log(clickedUser, 'this is the clicedd')
-  
-  // let getID = this.props.clickedUser.id
-  // console.log(getID,"this is the iddddd")
+    super(props);
 
-    this.handleSubmit = this.handleSubmit.bind(this) 
-}
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-  handleSubmit(event){
+  handleSubmit(event) {
     this.props.dispatch(close2())
   }
 
-
-  render(){
+  render() {
     return (
       <div>
       <Modal id='profile_modal_other' show={this.props.clickedUser.showModel2} >
@@ -87,13 +73,9 @@ class OtherUserProfile extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // console.log("in otheruserprofile",state.allReducers.ClickedUserProfileReducer)
   return {
-    // console.log(clickedUser, 'this is my clickeddd user')
-    // allUsers: state.allReducers.UserReducer,
     clickedUser: state.allReducers.ClickedUserProfileReducer
   }
-  // console.log(clickedUser, 'this is my clickeddd user')
 }
 
 export default connect(mapStateToProps)(OtherUserProfile)

@@ -33,14 +33,7 @@ const emojiChecker = str => {
 
 const Message = ({ created_at, text, username, url, picture }) => {
 
-  let stuff;
- 
-  if(url) {
-    stuff = Object.assign([],emojiChecker({text}),<Giphy url={url} key={Date.now()}/>)
-    // [...emojiChecker({text}), <Giphy url={url} key={Date.now()}/>];
-  } else {
-    stuff = emojiChecker({text});
-  }
+  let stuff = emojiChecker({text});
 
   return (
 
@@ -58,6 +51,10 @@ const Message = ({ created_at, text, username, url, picture }) => {
         {username} 
         </Media.Heading>
         { stuff }
+        {
+          url &&
+          <Giphy url={url} key={Date.now()}/>
+        }
       </Media.Body>
 
       <Media.Right>

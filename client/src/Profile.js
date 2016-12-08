@@ -67,7 +67,7 @@ class Profile extends React.Component {
     });
   }
        
-  handleFirst(event){ this.setState({first: event.target.value})}  
+  handleFirst(event) { this.setState({first: event.target.value})}  
   handleLast(event) { this.setState({last: event.target.value})}
   handlePhone(event) { this.setState({phone: event.target.value})}
   handleAbout(event) { this.setState({about: event.target.value})}
@@ -76,10 +76,9 @@ class Profile extends React.Component {
   handleTwitter(event) { this.setState({twitter: event.target.value})}
   handleLinkedin(event) { this.setState({linkedin: event.target.value})}
   
-
   handlePreview(event) {
     let user = this.state
-    console.log(this.props, 'these are the proppps')
+    // console.log(this.props, 'these are the proppps')
     // this.props.save(info)
     // this.upload(event, info);
     this.props.dispatch(clickedUserProfile(user))
@@ -89,26 +88,31 @@ class Profile extends React.Component {
 
   handleSubmit(event) {
     let info = this.state
-    this.props.save(info)
+    console.log('here is the info ', info)
+    // this.props.save(info)
     this.upload(event, info);
     this.props.dispatch(close())
-    // this.props.onHide();
   }
   
   upload(event, info) {
     const dispatch = this.props.dispatch;
     const currentUser = this.props.currentUser;
     let file = this.refs.pic.files[0];
-    if(!file) return;
+    if(!file) {
+      info.id = currentUser.id;
+      info.admin = currentUser.admin;
+      dispatch(setCurrentUser(info));
+      return;
+    }
   
     let reader = new FileReader();
     reader.readAsDataURL(file);
 
     reader.onloadend = function(event) {
-      console.log("WE ARE UPLODING NOW, and here is currentUser", currentUser)
       updateUserPicture(reader.result)
       .then(url => {
         info.id = currentUser.id;
+        info.admin = currentUser.admin;
         info.picture = url;
         dispatch(setCurrentUser(info))
       })
@@ -118,7 +122,7 @@ class Profile extends React.Component {
   render() {
     return (
       <div>
-      <Modal id='profile_modal'show={this.props.toShowModel.showModel} >
+      <Modal id='profile_modal'show={this.props.toShowModel.showModel} onHide={this.handleSubmit}>
         <Modal.Header>
           <Modal.Title >Profile</Modal.Title>
         </Modal.Header>
@@ -186,13 +190,3 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default connect(mapStateToProps)(Profile)
-// export default Profile
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-// import ReactDOM from 'react-dom';
 import Message from './Message';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -22,18 +21,35 @@ class MessageList extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      socket: false,
+    }
   }
 
-  // componentWillReceiveProps() {
+  componentDidMount() {
+    this.node.scrollTop = this.node.scrollHeight
+  }
 
-  //   // Scroll to the bottom on initialization
-  //   var len = this.filtered.length - 1;
-  //   const node = ReactDOM.findDOMNode(this['_div' + len]);
-  //   console.log("len: ",len," ","node: ",node)
-  //   if (node) {
-  //     node.scrollIntoView();
-  //   }
-  // }
+  componentDidUpdate() {
+    // this.node.scrollIntoView();
+    console.log(this.node.scrollTop, this.node.scrollHeight, this.node.clientHeight);
+    if(!this.state.socket) this.node.scrollTop = this.node.scrollHeight;
+    else if(this.node.scrollTop - this.node.scrollHeight === this.node.clientHeight)  this.node.scrollTop = this.node.scrollHeight;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.messages[nextProps.messages.length - 1].id > 1000000000) {
+      this.setState({socket: true});
+    }
+    // Scroll to the bottom on initialization
+    // var len = this.filtered.length - 1;
+    // const node = ReactDOM.findDOMNode(this['_div' + len]);
+    // console.log("len: ",len," ","node: ",node)
+    // if (node) {
+    //   node.scrollIntoView();
+    // }
+  }
 
   // componentDidUpdate() {
   //   // Scroll as new elements come along
@@ -44,7 +60,7 @@ class MessageList extends React.Component {
   //   }
   // }
 
-  render(){
+  render() {
     this.filtered = this.props.messages.filter(message => {
       return message.channelName === this.props.currentRoom.channelName || message.channelName === undefined;
     })    
@@ -55,7 +71,7 @@ class MessageList extends React.Component {
           ("Private chat between " + this.props.currentRoom.user2username + " and " + this.props.currentRoom.user1username) }
         </h4>
         
-        <div className="chatBody">
+        <div className="chatBody" ref={node => this.node = node}>
           <div id="messages">
             {this.filtered.map((message,i) => 
               <Message
