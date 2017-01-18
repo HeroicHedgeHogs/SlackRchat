@@ -27,7 +27,7 @@ class OtherUserProfile extends React.Component {
       <div>
       <Modal id='profile_modal_other' show={this.props.clickedUser.showModel2} >
         <Modal.Header>
-          <Modal.Title>Profile {this.props.clickedUser.username}</Modal.Title>
+          <Modal.Title className='profileTitle'>Profile {this.props.clickedUser.username}</Modal.Title>
         </Modal.Header>
         <Modal.Body id='modal_content'> 
       <div className='otheruserprofile'>
@@ -47,7 +47,7 @@ class OtherUserProfile extends React.Component {
           </div>
           <div className='colors'>
             <div className='socialMedia'>Social Media</div>
-              <label className='names'>Github1</label>
+              <label className='names'>Github</label>
               <p><a href={this.props.clickedUser.github}>{this.props.clickedUser.github}</a></p>
               <label className='names'>Linkedin</label>
               <p><a href={this.props.clickedUser.linkedin}>{this.props.clickedUser.linkedin}</a></p>

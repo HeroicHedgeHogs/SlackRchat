@@ -77,21 +77,16 @@ class Profile extends React.Component {
   handleLinkedin(event) { this.setState({linkedin: event.target.value})}
   
   handlePreview(event) {
-    let user = this.state
-    // console.log(this.props, 'these are the proppps')
-    // this.props.save(info)
-    // this.upload(event, info);
-    this.props.dispatch(clickedUserProfile(user))
-    this.props.dispatch(open2())
-    this.props.save(info)
+    let user = this.state;
+    this.props.dispatch(clickedUserProfile(user));
+    this.props.dispatch(open2());
+    this.props.save(info);
   }
 
   handleSubmit(event) {
-    let info = this.state
-    console.log('here is the info ', info)
-    // this.props.save(info)
+    let info = this.state;
     this.upload(event, info);
-    this.props.dispatch(close())
+    this.props.dispatch(close());
   }
   
   upload(event, info) {
@@ -124,7 +119,7 @@ class Profile extends React.Component {
       <div>
       <Modal id='profile_modal'show={this.props.toShowModel.showModel} onHide={this.handleSubmit}>
         <Modal.Header>
-          <Modal.Title >Profile</Modal.Title>
+          <Modal.Title className='profileTitle'>Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body id='modal_content'>
         <div>
@@ -170,18 +165,15 @@ class Profile extends React.Component {
         </div>  
         </Modal.Body>
         <Modal.Footer>
-          <Button className='btn btn-default' onClick={(event)=>this.handlePreview(event)}>Preview</Button>
           <Button className="btn btn-default" onClick={(event)=>this.handleSubmit(event)}>Save</Button>
         </Modal.Footer>
       </Modal>
     </div>
-  
-     ) 
+    ) 
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // console.log('julia these', state.allReducers.ClickedUserProfileReducer)
   return {
     currentUser: state.allReducers.CurrentUserReducer,
     toShowModel: state.allReducers.NavReducer,
